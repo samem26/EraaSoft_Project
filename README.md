@@ -43,21 +43,7 @@ cd EraaSoft_Project
 
 **2. Configure your database**
 
-Set your SQL Server connection string using .NET User Secrets:
-
-```bash
-dotnet user-secrets set "ConnectionStrings:DefaultConnection" \
-  "Server=localhost,1433;Database=TrainSystemDb;User Id=sa;Password=YOUR_PASSWORD;TrustServerCertificate=True;" \
-  --project TrainSystem.Api
-```
-
-Replace the server, port, username, and password with your own values. Keep credentials out of Git.
-
-**3. Run the application**
-
-```bash
-dotnet run --project TrainSystem.Api
-```
+Database Configuration: Set ConnectionStrings:DefaultConnection for TrainSystem.Api with your SQL Server address, database name, username, and password. The setting is defined in TrainSystem.Api/appsettings.json; use .NET User Secrets for the actual credentials rather than committing them to Git.
 
 In Development, EF Core automatically creates the database if necessary and applies pending migrations. No manual database migration command is required.
 
