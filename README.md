@@ -2,83 +2,115 @@
 
 **Train Ticket Booking and Estimated Tracking System**
 
-An EraaSoft graduation project built with ASP.NET Core Web API.
+Trains is a graduation project developed as part of the EraaSoft diploma using ASP.NET Core Web API.
 
-Trains aims to let passengers search for train journeys, book tickets between stations, and track estimated train progress. Station officers report train arrivals and departures to help update expected arrival times.
+The system aims to make train ticket booking easier by allowing passengers to search for journeys, book tickets between stations, and follow estimated train progress.
+
+Station officers report train arrivals and departures, allowing the system to update expected arrival times when delays occur.
 
 ## Technologies
 
 - C# / .NET 10
 - ASP.NET Core Web API
 - Entity Framework Core (Code First)
-- SQL Server
+- Microsoft SQL Server
 - ASP.NET Core Identity
 - Repository Pattern
 
-## Features
+## Main Features
 
 The system is designed to support:
 
-- Passenger registration and login
-- Train, station, route, and schedule management
-- Journey search and ticket booking
-- Seat availability between stations
-- Ticket payments
-- Station officer reports
-- Estimated train tracking and delay notifications
-- Admin management
+- **User Accounts:** Registration, login, and role-based access.
+- **Train Management:** Manage trains, train types, stations, and routes.
+- **Journey Scheduling:** Create journeys with departure times and intermediate stops.
+- **Journey Search:** Find trains travelling between selected stations.
+- **Ticket Booking:** Reserve seats between boarding and destination stations.
+- **Seat Availability:** Allow seats to be booked again on non-overlapping parts of the same journey.
+- **Payments:** Pay for ticket bookings.
+- **Station Reports:** Station officers report train arrivals, departures, and passage events.
+- **Estimated Tracking:** Display estimated train progress based on schedules and station reports, without GPS.
+- **Delay Notifications:** Inform passengers about changes to expected arrival times.
 
-**Current progress:** The database models, Identity foundation, EF Core migrations, generic repository, and basic station endpoints are implemented. The remaining features are under development.
+### User Roles
+
+| Role            | Responsibilities                                                              |
+| --------------- | ----------------------------------------------------------------------------- |
+| Admin           | Manage trains, stations, routes, schedules, fares, and station officers.      |
+| Station Officer | Report train arrivals, departures, and passage events at assigned stations.   |
+| Passenger       | Search for journeys, book tickets, make payments, and follow journey updates. |
+
+## Current Progress
+
+The project currently includes:
+
+- ASP.NET Core Web API setup
+- Database entities and EF Core Code First
+- ASP.NET Core Identity foundation
+- Generic Repository Pattern
+- Initial database migration
+- Basic station retrieval endpoints
+
+The remaining features are under development.
 
 ## Getting Started
 
-**Requirements:** .NET 10 SDK, SQL Server, and Git.
+### Requirements
 
-**1. Clone the repository**
+- .NET 10 SDK
+- Microsoft SQL Server
+- Git
+
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/samem26/EraaSoft_Project.git
 cd EraaSoft_Project
 ```
 
-**2. Configure your database**
+The repository is private, so you must have access to it.
 
-Set your SQL Server connection string using .NET User Secrets:
-
-```bash
-dotnet user-secrets set "ConnectionStrings:DefaultConnection" \
-  "Server=localhost,1433;Database=TrainSystemDb;User Id=sa;Password=YOUR_PASSWORD;TrustServerCertificate=True;" \
-  --project TrainSystem.Api
-```
-
-Replace the server, port, username, and password with your own values. Keep credentials out of Git.
-
-**3. Run the application**
+### 2. Run the Application
 
 ```bash
 dotnet run --project TrainSystem.Api
 ```
 
-In Development, EF Core automatically creates the database if necessary and applies pending migrations. No manual database migration command is required.
+The default local address is:
 
-## Available Endpoints
+`http://localhost:5080`
 
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/stations` | Get all stations |
-| GET | `/api/stations/{id}` | Get a station by ID |
+## Available API Endpoints
 
-Default local URL: `http://localhost:5080`
+| Method | Endpoint             | Description         |
+| ------ | -------------------- | ------------------- |
+| GET    | `/api/stations`      | Get all stations    |
+| GET    | `/api/stations/{id}` | Get a station by ID |
+
+Additional endpoints will be added as development progresses.
 
 ## Project Structure
 
-- `TrainSystem.Api/Controllers` — API endpoints
-- `TrainSystem.Api/Models` — Database entities
-- `TrainSystem.Api/Data` — EF Core DbContext
-- `TrainSystem.Api/Repositories` — Generic repository
-- `TrainSystem.Api/Migrations` — Code First migrations
-- `docs/` — Project documentation and database diagrams
+```text
+EraaSoft_Project/
+├── TrainSystem.Api/
+│   ├── Controllers/
+│   ├── Data/
+│   ├── Models/
+│   ├── Repositories/
+│   ├── Migrations/
+│   └── Program.cs
+├── docs/
+├── EraaSoft_Project.slnx
+└── README.md
+```
 
-## Development Note
+## Documentation
 
-The planned booking system allows a seat to be reused after a passenger reaches their destination station. The current database constraint still reserves a seat for the entire journey; this will be corrected when implementing booking logic.
+Project requirements and ERD diagrams are available in the `docs/` directory.
+
+---
+
+**Project:** EraaSoft Diploma Graduation Project
+
+**Status:** Under Development
