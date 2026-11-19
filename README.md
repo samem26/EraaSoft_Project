@@ -70,7 +70,11 @@ cd EraaSoft_Project
 
 The repository is private, so you must have access to it.
 
-### 2. Run the Application
+### 2. Database Configuration
+
+> **Database Configuration:** Set `ConnectionStrings:DefaultConnection` for `TrainSystem.Api` using .NET User Secrets, providing your SQL Server address, database name, username, and password. The connection-string setting is defined in `TrainSystem.Api/appsettings.json`.
+
+### 3. Run the Application
 
 ```bash
 dotnet run --project TrainSystem.Api
