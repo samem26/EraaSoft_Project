@@ -46,13 +46,15 @@ builder.Services.AddIdentityCore<ApplicationUser>(options =>
 })
     .AddRoles<IdentityRole>()
     .AddSignInManager()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 string? jwtSigningKey = builder.Configuration["Jwt:SigningKey"];
 
 if (string.IsNullOrWhiteSpace(jwtSigningKey) || Encoding.UTF8.GetByteCount(jwtSigningKey) < 32)
 {
-    throw new InvalidOperationException("Set Jwt:SigningKey to a signing key of at least 32 bytes. Use .NET User Secrets for local development.");
+    throw new InvalidOperationException(
+        "Set Jwt:SigningKey to a signing key of at least 32 bytes. Use .NET User Secrets for local development.");
 }
 
 var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSigningKey));
